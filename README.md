@@ -28,3 +28,7 @@ spl-token transfer <TokenMint> 10 <Destination_Address> --fund-recipient
 
 
 #### Make Token via JavaScript Web3.js
+Update token name, symbol, uri, and additionalMetadata values inside mintToken.ts file. Then run it:
+```
+bun mintToken.ts
+```
