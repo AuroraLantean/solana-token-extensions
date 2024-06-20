@@ -1,12 +1,18 @@
 import { getKeypairFromFile } from "@solana-developers/helpers";
 import { createInitializeMetadataPointerInstruction, createInitializeMintInstruction, ExtensionType, getMintLen, getTokenMetadata, LENGTH_SIZE, TOKEN_2022_PROGRAM_ID, TYPE_SIZE } from "@solana/spl-token";
 import { createInitializeInstruction, createUpdateFieldInstruction, pack, type TokenMetadata } from "@solana/spl-token-metadata";
-import { Connection, Keypair, SystemProgram, Transaction, clusterApiUrl, sendAndConfirmTransaction } from "@solana/web3.js";
+import { Connection, Keypair, LAMPORTS_PER_SOL, SystemProgram, Transaction, clusterApiUrl, sendAndConfirmTransaction } from "@solana/web3.js";
 
+//https://solana.com/developers/guides/token-extensions/metadata-pointer
 const lg = console.log;
 const connection = new Connection(clusterApiUrl("devnet"));
+//const connection = new Connection(your_solana_node_url);
 const payer = await getKeypairFromFile("~/.config/solana/id.json");
 lg("payer:", payer.publicKey.toBase58());
+/* import bs58 from "bs58";
+const privateKey = new Uint8Array(bs58.decode(process.env['PRIVATE_KEY']));
+const account = Keypair.fromSecretKey(privateKey)
+ */
 
 const mint = Keypair.generate();
 lg("mint:", mint.publicKey.toBase58());
@@ -40,7 +46,7 @@ const createAccountTx = SystemProgram.createAccount({
 const initializeMetadataPointerIx = createInitializeMetadataPointerInstruction(
   mint.publicKey, payer.publicKey, mint.publicKey, TOKEN_2022_PROGRAM_ID
 );
-const decimals = 2;
+const decimals = 9;
 const initializeMintIx = createInitializeMintInstruction(
   mint.publicKey, decimals, payer.publicKey, null, TOKEN_2022_PROGRAM_ID
 );
@@ -81,8 +87,3 @@ const chainMetadata = await getTokenMetadata(
   connection, mint.publicKey
 );
 lg("chainMetadata:", chainMetadata);
-
-
-
-
-

@@ -1,10 +1,10 @@
 # solana-token-extensions
 
 #### Make Token via CLI
-<TokenMint>.json is the TokenMint keypair
-key*.json is the TokenOwner keypair
-*.png is the Token Image
-metadata-dragon.json is the Token Metadata, uploaded to IFPS
+- "TokenMint".json is the TokenMint keypair
+- key*.json is the TokenOwner keypair
+- *.png is the Token Image
+- metadata-dragon.json is the Token Metadata, uploaded to IFPS
 
 ```
 solana config set --keypair key*.json
