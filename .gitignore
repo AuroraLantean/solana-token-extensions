@@ -1,3 +1,10 @@
+*.png
+*.jpeg
+dgn*.json
+metadata-dragon1.json
+key*.json
+aarchives
+
 # Logs
 logs
 *.log
