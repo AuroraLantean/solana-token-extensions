@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "mint": "bun mintToken.ts"
+    "setupmint": "bun functions/setupMint.ts",
+    "sendsol": "bun functions/sendSol.ts",
+    "sendtok": "bun functions/sendToken.ts"
   },
   "keywords": [],
   "author": "",
